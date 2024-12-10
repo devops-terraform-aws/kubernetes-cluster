@@ -47,6 +47,9 @@ aws eks --region $(terraform output -raw region) update-kubeconfig \
 Use `kubectl` commands to verify your cluster configuration.
 
 First, get information about the cluster.
+```
+kubectl cluster-info
+```
 ![Cluster Information](./assets/cluster-info.png)
 
 Notice that the Kubernetes control plane location matches the cluster_endpoint value from the terraform apply output above.
