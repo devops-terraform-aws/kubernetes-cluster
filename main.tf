@@ -1,6 +1,6 @@
 module "vpc" {
   source               = "git::https://github.com/devops-terraform-aws/vpc.git?ref=v1.0.0"
-  name                 = "education-vpccs"
+  name                 = "eks-vpc"
   cidr                 = "10.0.0.0/16"
   azs                  = slice(data.aws_availability_zones.available.names, 0, 3)
   private_subnets      = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
@@ -63,8 +63,7 @@ module "eks" {
 }
 
 module "irsa-ebs-csi" {
-  source = "git::https://github.com/devops-terraform-aws/iam//modules/iam-assumable-role-with-oidc?ref=v1.0.0"
-
+  source                        = "git::https://github.com/devops-terraform-aws/iam//modules/iam-assumable-role-with-oidc?ref=v1.0.0"
   create_role                   = true
   role_name                     = "AmazonEKSTFEBSCSIRole-${module.eks.cluster_name}"
   provider_url                  = module.eks.oidc_provider

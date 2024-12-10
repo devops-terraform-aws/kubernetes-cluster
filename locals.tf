@@ -1,3 +1,3 @@
 locals {
-  cluster_name = "education-eks-${random_string.suffix.result}"
+  cluster_name = "eks-cluster${random_string.suffix.result}"
 }
